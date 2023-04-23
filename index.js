@@ -1,15 +1,36 @@
-const button = document.getElementById('generate');
+const resetButton = document.querySelector('button');
+const container = document.querySelector('.container');
+const sizeOfGrid = 16;
 
-button.addEventListener('click', (e) => {
-    console.log('CLICKED');
-    e.preventDefault();
-});
+const createGrid = (amountOfGrids) => {
+    for (let i = 0; i < amountOfGrids; i++){
+        const row = document.createElement('div');
+        row.classList.add('grid-row');
 
-var div = document.createElement('div');
-div.style.width = "100px";
-div.style.height = "100px";
-div.style.background = "red";
-div.style.color = "white";
-div.innerHTML = "DIV";
+        for (let j = 0; j < amountOfGrids; j++){
+            const widthAndHeight = 960 / sizeOfGrid;
+            const gridBox = document.createElement('div');
+            gridBox.classList.add('grid-box');
+            gridBox.style.width = `${widthAndHeight}px`;
+            gridBox.style.height = `${widthAndHeight}px`;
 
-document.getElementById('main').append.child(div);
+            gridBox.addEventListener('mouseenter', () => {
+                gridBox.style.backgroundColor = 'black';
+            });
+            row.appendChild(gridBox);
+        }
+        container.appendChild(row);
+    }
+}
+
+createGrid(sizeOfGrid);
+
+
+// Alternative way of changing square colors
+// const allDivs = document.querySelectorAll('.grid-box');
+// allDivs.forEach(div => {
+//     div.addEventListener('mouseenter', () => {
+//         div.style.backgroundColor = 'black';
+//     });
+// });
+
